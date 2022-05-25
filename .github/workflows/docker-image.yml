@@ -1,4 +1,4 @@
-name: Dcoker
+name: Docker
 
 on:
   push:
@@ -17,8 +17,8 @@ jobs:
     - name: Build the Docker image
       run: |
 
-       docker ps | grep markataa/nginx-action | awk '{print $1}' | xargs docker rm -f /
-       docker images -a | grep markataa/nginx-action | awk '{print $1":"$2}' | xargs docker rmi -f/
+       if docker ps | grep omarkataa/nginx-action | awk '{print $1}' ;then docker ps | grep omarkataa/nginx-action | awk '{print $1}' | xargs docker rm -f; fi /
+       if docker images -a | grep markataa/nginx-action | awk '{print $1":"$2}';then docker images -a | grep markataa/nginx-action | awk '{print $1":"$2}'| xargs docker rmi -f; fi/
        docker build -t markataa/nginx-action:$GITHUB_RUN_ID .
 
 
