@@ -32,9 +32,8 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         
     - name: Run the build process with Docker
-      uses: addnab/docker-run-action@v3
-      with:
-          image: omarkataa/nginx-action:$GITHUB_RUN_ID
+ 
+      run: docker run -d --name omarkataa -p 80:80 omarkataa/nginx-action:$GITHUB_RUN_ID
     
 
 
