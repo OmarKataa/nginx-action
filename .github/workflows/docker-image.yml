@@ -1,4 +1,4 @@
-name: Docker
+name: f
 
 on:
   push:
@@ -15,11 +15,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: |
+      run:  docker build -t markataa/nginx-action:$GITHUB_RUN_ID .
 
-       if docker ps | grep omarkataa/nginx-action | awk '{print $1}' ;then docker ps | grep omarkataa/nginx-action | awk '{print $1}' | xargs docker rm -f; fi /
-       if docker images -a | grep markataa/nginx-action | awk '{print $1":"$2}';then docker images -a | grep markataa/nginx-action | awk '{print $1":"$2}'| xargs docker rmi -f; fi/
-       docker build -t markataa/nginx-action:$GITHUB_RUN_ID .
+
+      #  if docker ps | grep omarkataa/nginx-action | awk '{print $1}' ;then docker ps | grep omarkataa/nginx-action | awk '{print $1}' | xargs docker rm -f; fi /
+      #  if docker images -a | grep markataa/nginx-action | awk '{print $1":"$2}';then docker images -a | grep markataa/nginx-action | awk '{print $1":"$2}'| xargs docker rmi -f; fi/
 
 
   login:
