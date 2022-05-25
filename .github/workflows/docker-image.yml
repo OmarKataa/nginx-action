@@ -1,0 +1,41 @@
+name: Dcoker
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+
+       docker ps | grep markataa/nginx-action | awk '{print $1}' | xargs docker rm -f /
+       docker images -a | grep markataa/nginx-action | awk '{print $1":"$2}' | xargs docker rmi -f/
+       docker build -t markataa/nginx-action:$GITHUB_RUN_ID .
+
+
+  login:
+    
+    needs: build
+    runs-on: self-hosted
+    steps:
+   
+    - uses: actions/checkout@master
+    - name: Publish to Registry
+      uses: minddocdev/docker-publish-action@master
+      with:
+        name: myDocker/repository
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        run: docker run -d --name markataa/nginx-action -p 80:80 markataa/nginx-action:$GITHUB_RUN_ID
+
+
+ 
