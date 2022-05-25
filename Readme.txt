@@ -1,6 +1,6 @@
 Thanks for downloading this template!
 
-Template Name: HeroBiz
-Template URL: https://bootstrapmade.com/herobiz-bootstrap-business-template/
+Template Name: BizLand
+Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
 Author: BootstrapMade.com
 License: https://bootstrapmade.com/license/
