@@ -27,3 +27,17 @@ jobs:
         with:
           push: true
           tags: omarkataa/nginx-action
+  ssh:
+    runs-on: ubuntu-latest
+    needs: docker
+    steps:
+      - name:  via ssh
+        uses: fifsky/ssh-action@master
+        with:
+          command: apt-get install nginx
+        
+            
+          host: ${{ secrets.HOST }}
+          user: root
+          key: ${{ secrets.PRIVATE_KEY}}
+   
